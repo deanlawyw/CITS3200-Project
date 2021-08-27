@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Getting started with Firebase</p>
+    <h1 id="bigOne"></h1>
+
+    
+    <script type = "module">
+        // Import the functions you need from the SDKs you need
+        import { firebase,initializeApp } from './node_modules/firebase/app';
+        //import { getFir } from 'firebase/database';
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBocpZkRSxjJQ_Sf05g7rqdmCMF-POn5kI",
+            authDomain: "test-218c4.firebaseapp.com",
+            databaseURL: "https://test-218c4-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "test-218c4",
+            storageBucket: "test-218c4.appspot.com",
+            messagingSenderId: "898289973671",
+            appId: "1:898289973671:web:5bc2a5535e01e883245e82"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+</body>
+</html>
+
