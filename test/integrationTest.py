@@ -1,4 +1,5 @@
 import os
+import time
 import unittest
 import pandas as pd
 from selenium import webdriver
@@ -8,6 +9,8 @@ import subprocess
 
 
 class Test(unittest.TestCase):
+
+    base_url = "http://localhost:3000"
 
     def setUp(self) -> None:
 
@@ -24,18 +27,16 @@ class Test(unittest.TestCase):
                 self.driver = webdriver.Firefox(
                     os.path.join(path, "geckodriver"))
                 break
-        subprocess.check_call("npm start", shell=True)
+        # subprocess.check_call("npm start", shell=True)
 
     def testSample(self) -> None:
 
-        pass
-        # # browser loads in maximized window
-        # self.driver.maximize_window()
-        # # driver waits implicitly for 5 seconds, for the element under consideration to load
-        # self.driver.implicitly_wait(5)
+        # browser loads in maximized window
+        self.driver.maximize_window()
 
         # load a given url in browser window
-        # self.driver.get(self.base_url)
+        self.driver.get(self.base_url)
+        time.sleep(5)
 
         # # fetech the content with xpath
         # content_list = self.driver.find_elements_by_xpath(
@@ -52,13 +53,21 @@ class Test(unittest.TestCase):
 
         # # to search for the entered search term
         # search_box.send_keys(Keys.RETURN)
-        # # to click on the first search result's link
-        # self.driver.find_element_by_xpath(
-        #     "//a[@href='/admin']").click()
+        # to click on the first search result's link
+        pages = self.driver.find_elements_by_xpath(
+            "//a[@class='px-4 py-2 m-0.5 hover:bg-blue-400 rounded font-sans text-white text-lg undefined']")
         # # switch to the new tab
         # self.driver.switch_to.window(self.driver.window_handles[1])
-        # # to confirm if a certain page has loaded
-        # self.assertTrue(self.driver.title.startswith(""))
+        # to confirm if a certain page has loaded
+        for i in range(len(pages)):
+            pages = self.driver.find_elements_by_xpath(
+                "//a[@class='px-4 py-2 m-0.5 hover:bg-blue-400 rounded font-sans text-white text-lg undefined']")
+            pages[i].click()
+            time.sleep(5)
+            # get back to the home page
+            self.driver.execute_script("window.history.go(-1)")
+            time.sleep(5)
+
         # # to confirm if a certain item is visible or not
         # self.assertTrue(self.driver.find_element_by_id("").is_displayed())
 
