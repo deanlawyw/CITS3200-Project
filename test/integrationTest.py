@@ -10,7 +10,7 @@ import subprocess
 
 class Test(unittest.TestCase):
 
-    base_url = "http://localhost:3000"
+    base_url = "https://misinformation-game-group-41.web.app"
 
     def setUp(self) -> None:
 
