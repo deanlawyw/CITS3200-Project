@@ -29,14 +29,14 @@ class Test(unittest.TestCase):
                 break
         # subprocess.check_call("npm start", shell=True)
 
-    def testSample(self) -> None:
+    def testPages(self) -> None:
 
         # browser loads in maximized window
         self.driver.maximize_window()
 
         # load a given url in browser window
         self.driver.get(self.base_url)
-        time.sleep(5)
+        time.sleep(2)
 
         # # fetech the content with xpath
         # content_list = self.driver.find_elements_by_xpath(
@@ -63,13 +63,61 @@ class Test(unittest.TestCase):
             pages = self.driver.find_elements_by_xpath(
                 "//a[@class='px-4 py-2 m-0.5 hover:bg-blue-400 rounded font-sans text-white text-lg undefined']")
             pages[i].click()
-            time.sleep(5)
+            time.sleep(2)
             # get back to the home page
             self.driver.execute_script("window.history.go(-1)")
-            time.sleep(5)
+            time.sleep(2)
 
         # # to confirm if a certain item is visible or not
         # self.assertTrue(self.driver.find_element_by_id("").is_displayed())
+
+    def testCorrectUpload(self) -> None:
+
+        self.driver.maximize_window()
+
+        self.driver.get(self.base_url)
+        time.sleep(2)
+
+        upload_page = self.driver.find_element_by_link_text("Upload")
+
+        upload_page.click()
+        time.sleep(2)
+
+        upload_element = self.driver.find_element_by_xpath(
+            "//input[@class='hidden fileSelector']")
+
+        upload_element.send_keys(os.path.join(
+            os.getcwd(), "StudyTemplate.xlsx"))
+        time.sleep(5)
+        try:
+            self.driver.find_element_by_xpath("//span[text()='Success']")
+            print("Uploading correct study file test scceeded!")
+        except:
+            print("Uploading correct study file test failed!")
+
+    def testIncorrectUpload(self) -> None:
+
+        self.driver.maximize_window()
+
+        self.driver.get(self.base_url)
+        time.sleep(2)
+
+        upload_page = self.driver.find_element_by_link_text("Upload")
+
+        upload_page.click()
+        time.sleep(2)
+
+        upload_element = self.driver.find_element_by_xpath(
+            "//input[@class='hidden fileSelector']")
+
+        upload_element.send_keys(os.path.join(
+            os.getcwd(), "integrationTest.py"))
+        time.sleep(5)
+        try:
+            self.driver.find_element_by_xpath("//span[text()='Success']")
+            print("Uploading incorrect study file test failed!")
+        except:
+            print("Uploading incorrect study file test scceeded!")
 
     def shutDown(self) -> None:
 
@@ -79,4 +127,5 @@ class Test(unittest.TestCase):
 if __name__ == "__main__":
     test = Test()
     test.setUp()
-    test.testSample()
+    # test.testCorrectUpload()
+    test.testIncorrectUpload()
