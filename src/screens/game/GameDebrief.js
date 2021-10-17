@@ -33,7 +33,7 @@ export class GameDebrief extends ActiveGameScreen {
                                       checked:bg-blue-600 checked:border-transparent"
                            onClick={e => this.setState({...this.state, hidden: !hidden})}/>
                     <label className="inline-block ml-4 font-semibold text-lg align-middle">
-                        I confirm I have read the study debriefing
+                        I confirm I have read the study debriefing.
                     </label>
                 </div>
 
