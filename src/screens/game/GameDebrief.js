@@ -24,7 +24,7 @@ export class GameDebrief extends ActiveGameScreen {
         }
 
         return (
-            <div className="m-1 bg-white p-10 relative">
+            <div className="m-1 bg-white p-10 relative mr-auto ml-auto">
                 <p className="leading-5" dangerouslySetInnerHTML={{__html: study.debrief}} />
 
                 <div className="mt-8">
